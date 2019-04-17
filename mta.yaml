@@ -1,0 +1,45 @@
+ID: blockchainstarter
+_schema-version: '2.1'
+version: 0.0.1
+modules:
+  - name: compliance-srv
+    type: nodejs
+    path: compliance-srv
+    provides:
+      - name: compliance-srv_api
+        properties:
+          url: '${default-url}'
+    requires:
+      - name: complianceresource
+    parameters:
+      BC_TECHNOLOGY_SERVICE_NAME: compliance-instance
+      MC_STREAM_ID: SAP000S407W212743
+  - name: compliance-ui
+    type: html5
+    path: compliance-ui
+    parameters:
+      disk-quota: 256M
+      memory: 256M
+    build-parameters:
+      builder: grunt
+    requires:
+      - name: uaa_blockchainstarter
+      - name: dest_blockchainstarter
+resources:
+  - name: complianceresource
+    parameters:
+      service-name: compliance-instance
+      service: multichain
+      service-plan: trial
+    type: org.cloudfoundry.existing-service
+  - name: uaa_blockchainstarter
+    parameters:
+      path: ./xs-security.json
+      service-plan: application
+      service: xsuaa
+    type: org.cloudfoundry.managed-service
+  - name: dest_blockchainstarter
+    parameters:
+      service-plan: lite
+      service: destination
+    type: org.cloudfoundry.managed-service

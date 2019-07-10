@@ -6,7 +6,7 @@ var request = require("request");
 
 module.exports = function (creds, opts, logger, cb) {
 	var multichain = {};
-	var streamId = opts.streamId || "SAP000S407W212743";
+	var streamId = opts.streamId || "stream3";
 
 	function _init(cb) {		
 		request.post({

@@ -3,8 +3,40 @@
 	<Shell id="shell">
 		<App id="app">
 			<pages>
-				<Page id="page" title="{i18n>title}">
-					<content></content>
+				<Page title="{i18n>title}">
+					<content>
+						<Table  inset="false" items="{ path: '/' }">
+							<columns>
+								<Column width="12em">
+									<Text text="Invoice Number"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true">
+									<Text text="Invoice Date"/>
+								</Column>
+								<Column minScreenWidth="Desktop" demandPopin="true" hAlign="End">
+									<Text text="Customer"/>
+								</Column>
+								<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
+									<Text text="Total Amount"/>
+								</Column>
+								<Column hAlign="End">
+									<Text text="Tax Amount"/>
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem>
+									<cells>
+										<ObjectIdentifier title="{data/json/invNo}"/>
+										<Text text="{data/json/invDate}"/>
+										<Text text="{data/json/custTIN}"/>
+										<Text text="{data/json/totalAmount}"/>
+										<Text text="{data/json/taxAmount}"/>
+										
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+					</content>
 				</Page>
 			</pages>
 		</App>

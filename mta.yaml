@@ -10,7 +10,7 @@ modules:
         properties:
           url: '${default-url}'
     requires:
-      - name: complianceresource
+      - name: docuchainresource
     parameters:
       BC_TECHNOLOGY_SERVICE_NAME: compliance-instance
       MC_STREAM_ID: SAP000S407W212743
@@ -23,22 +23,22 @@ modules:
     build-parameters:
       builder: grunt
     requires:
-      - name: uaa_blockchainstarter
-      - name: dest_blockchainstarter
+      - name: uaa_docuchain
+      - name: dest_docuchain
 resources:
-  - name: complianceresource
+  - name: docuchainresource
     parameters:
-      service-name: compliance-instance
+      service-name: edoc1-team004
       service: multichain
-      service-plan: trial
+      service-plan: small
     type: org.cloudfoundry.existing-service
-  - name: uaa_blockchainstarter
+  - name: uaa_docuchain
     parameters:
       path: ./xs-security.json
       service-plan: application
       service: xsuaa
     type: org.cloudfoundry.managed-service
-  - name: dest_blockchainstarter
+  - name: dest_docuchain
     parameters:
       service-plan: lite
       service: destination

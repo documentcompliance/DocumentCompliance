@@ -2,7 +2,7 @@ var MultiChain = require("./multichain.js");
 
 module.exports = function (creds, logger, cb) {
     var opts = {};
-    var type = creds.type || "";
+    var type = "";
 
     switch (type.toLowerCase()) {
         case "":

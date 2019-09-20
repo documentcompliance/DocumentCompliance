@@ -12,7 +12,7 @@ modules:
     requires:
       - name: docuchainresource
     parameters:
-      BC_TECHNOLOGY_SERVICE_NAME: compliance-instance
+      BC_TECHNOLOGY_SERVICE_NAME: mcinstance
       MC_STREAM_ID: SAP000S407W212743
   - name: compliance-ui
     type: html5
@@ -28,7 +28,7 @@ modules:
 resources:
   - name: docuchainresource
     parameters:
-      service-name: edoc1-team004
+      service-name: mcinstance
       service: multichain
       service-plan: small
     type: org.cloudfoundry.existing-service

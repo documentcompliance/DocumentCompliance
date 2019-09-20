@@ -116,34 +116,6 @@ BlockchainFactory(serviceCredentials, logger, function (blockchain) {
 	});
 });
 
-app.get("/liststremitems", function (req, res) {
-	var config = {
-		"method": "liststreamkeyitems",
-		"params": ["stream1", "key3"]
-	};
-
-	var authOptions = {
-		method: 'POST',
-		url: 'https://maas-proxy.cfapps.eu10.hana.ondemand.com/75575c9a-8872-4763-bf09-1a3068d2b708/rpc',
-		data: config,
-		headers: {
-			'apikey': 'zmqyuTGz5dNV6xbcYqkso6HHwD68EyhJghEXLmr4fD2f3CF6cPMFtNUg2CVb59u8'
-		},
-		json: true
-	};
-
-	
-
-	axios(authOptions)
-		.then(response => {
-			// JSON responses are automatically parsed.
-			res.send(response.data.result);
-		})
-		.catch(e => {
-			res.send(e);
-		});
-
-});
 
 app.get("/", function (req, res) {
 	res.sendFile(__dirname + "/index.html");

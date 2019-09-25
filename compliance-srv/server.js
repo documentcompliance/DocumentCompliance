@@ -12,18 +12,44 @@ app.get("/", function (req, res) {
 	res.send("Hello!!!");
 });
 
-app.get("/liststremitems", function (req, res) {
+app.get("/liststreamkeys", function (req, res) {
 	var config = {
-		"method": "liststreamkeyitems",
-		"params": ["stream99", "key1"]
+		"method": "liststreamkeys",
+		"params": ["stream1"]
 	};
 
 	var authOptions = {
 		method: 'POST',
-		url: 'https://maas-proxy.cfapps.us10.hana.ondemand.com/a1aaed2c-49e5-4c5a-bd0c-e38ad368810e/rpc',
+		url: 'https://maas-proxy.cfapps.us10.hana.ondemand.com/3ead9308-8c19-4d13-89e7-7e68b24968ce/rpc',
 		data: config,
 		headers: {
-			'apikey': 'FxYMp5uFkPL2gs4nLT3wKxuHVRVRnmkmbbDMme6zacD4cKYQ7USgMhc8VebMFJhG'
+			'apikey': 'xsnU5GB3qmwtaYpNboASjWkymy6eZA44r4PAqUHK7Ap9QxkdBWt82v3gFzSca2jx'
+		},
+		json: true
+	};
+
+	axios(authOptions)
+		.then(response => {
+			// JSON responses are automatically parsed.
+			res.send(response.data.result);
+		})
+		.catch(e => {
+			res.send(e);
+		});
+});
+
+app.get("/liststreamitems", function (req, res) {
+	var config = {
+		"method": "liststreamitems",
+		"params": ["stream1"]
+	};
+
+	var authOptions = {
+		method: 'POST',
+		url: 'https://maas-proxy.cfapps.us10.hana.ondemand.com/3ead9308-8c19-4d13-89e7-7e68b24968ce/rpc',
+		data: config,
+		headers: {
+			'apikey': 'xsnU5GB3qmwtaYpNboASjWkymy6eZA44r4PAqUHK7Ap9QxkdBWt82v3gFzSca2jx'
 		},
 		json: true
 	};

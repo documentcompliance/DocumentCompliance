@@ -1,41 +1,152 @@
 <mvc:View controllerName="com.sap.document.compliance.compliance-ui.controller.View1" xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-	xmlns="sap.m">
+	xmlns="sap.m" xmlns:f="sap.f" xmlns:form="sap.ui.layout.form" xmlns:card="sap.f.cards" xmlns:core="sap.ui.core">
 	<Shell id="shell">
 		<App id="app">
 			<pages>
-				<Page title="{i18n>title}">
+				<Page title="Seller X">
 					<content>
-						<Table  inset="false" items="{ path: '/' }">
-							<columns>
-								<Column width="12em">
-									<Text text="Invoice Number"/>
-								</Column>
-								<Column minScreenWidth="Tablet" demandPopin="true">
-									<Text text="Invoice Date"/>
-								</Column>
-								<Column minScreenWidth="Desktop" demandPopin="true" hAlign="End">
-									<Text text="Customer"/>
-								</Column>
-								<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
-									<Text text="Total Amount"/>
-								</Column>
-								<Column hAlign="End">
-									<Text text="Tax Amount"/>
-								</Column>
-							</columns>
-							<items>
-								<ColumnListItem>
-									<cells>
-										<ObjectIdentifier title="{data/json/invNo}"/>
-										<Text text="{data/json/invDate}"/>
-										<Text text="{data/json/custTIN}"/>
-										<Text text="{data/json/totalAmount}"/>
-										<Text text="{data/json/taxAmount}"/>
-										
-									</cells>
-								</ColumnListItem>
-							</items>
-						</Table>
+						<SplitContainer initialDetail="detail" initialMaster="master">
+							<masterPages>
+								<Page id="master" title="Transactions" icon="sap-icon://action" class="sapUiStdPage">
+									<content>
+										<List items="{master>/}">
+											<items>
+												<StandardListItem title="{master>key}" type="Active" press="onSelectInvoiceId"/>
+											</items>
+										</List>
+									</content>
+								</Page>
+							</masterPages>
+							<detailPages>
+								<Page id="detail" showHeader="false" icon="sap-icon://action" class="sapUiStdPage">
+									<content>
+										<Panel headerText="Header Details" expandable="true">
+											<f:GridContainer class="sapUiSmallMargin" inlineBlockLayout="true">
+												<f:layout>
+													<f:GridContainerSettings rowSize="5rem" columnSize="5rem" gap="1rem"/>
+												</f:layout>
+												<f:layoutS>
+													<f:GridContainerSettings rowSize="4.25rem" columnSize="4.25rem" gap="0.75rem"/>
+												</f:layoutS>
+												<f:items>
+													<f:Card>
+														<f:layoutData>
+															<f:GridContainerItemLayoutData columns="4"/>
+														</f:layoutData>
+														<f:content>
+															<VBox class="sapUiSmallMargin">
+																<form:SimpleForm title="Sender" singleContainerFullSize="false" columnsM="12" columnsL="12" columnsXL="12" emptySpanS="0" emptySpanM="4"
+																	emptySpanL="4" emptySpanXL="4" adjustLabelSpan="false" labelSpanS="12" labelSpanM="12" labelSpanL="12" labelSpanXL="3"
+																	layout="ResponsiveGridLayout" editable="false">
+																	<form:content>
+																		<Label text="Name"/>
+																		<Text text="{/SENDER/0/NAME}"/>
+																		<Label text="Tax ID."/>
+																		<Text text="{/SENDER/0/TAX_ID}"/>
+																		<Label text="Street Number"/>
+																		<Text text="{/SENDER/0/ADDRESS/0/STR_NUMBER}"/>
+																		<Label text="Street"/>
+																		<Text text="{/SENDER/0/ADDRESS/0/STREET_NAME}"/>
+																		<Label text="City"/>
+																		<Text text="{/SENDER/0/ADDRESS/0/CITY}"/>
+																		<Label text="Zipcode"/>
+																		<Text text="{/SENDER/0/ADDRESS/0/ZIPCODE}"/>
+																	</form:content>
+																</form:SimpleForm>
+															</VBox>
+														</f:content>
+													</f:Card>
+													<f:Card>
+														<f:layoutData>
+															<f:GridContainerItemLayoutData columns="4"/>
+														</f:layoutData>
+														<f:content>
+															<VBox class="sapUiSmallMargin">
+																<form:SimpleForm title="Invoice Header" id="SimpleFormDisplay354" singleContainerFullSize="false" columnsM="1" columnsL="1" columnsXL="1"
+																	emptySpanS="0" emptySpanM="4" emptySpanL="4" emptySpanXL="4" adjustLabelSpan="false" labelSpanS="12" labelSpanM="3" labelSpanL="3"
+																	labelSpanXL="3" layout="ResponsiveGridLayout" editable="false">
+																	<form:content>
+																		<Label text="Invoice Number"/>
+																		<Text text="{/INVOICE_HEADER/0/VBELN}"/>
+																		<Label text="Invoice Date"/>
+																		<Text text="{/INVOICE_HEADER/0/FKDAT}"/>
+																		<Label text="Customer"/>
+																		<Text text="{/RECEIVER/0/NAME}"/>
+																		<Label text="Total Amount"/>
+																		<Text text="{/INVOICE_HEADER/0/NETWR}"/>
+																		<Label text="Tax Amount"/>
+																		<Text text="{/INVOICE_HEADER/0/MWSBK}"/>
+																	</form:content>
+																</form:SimpleForm>
+															</VBox>
+														</f:content>
+													</f:Card>
+												</f:items>
+											</f:GridContainer>
+										</Panel>
+										<Panel headerText="Item Details" expandable="true">
+											<f:GridContainer id="demoGrid" class="sapUiSmallMargin" inlineBlockLayout="true">
+												<f:items>
+													<f:Card>
+														<f:layoutData>
+															<f:GridContainerItemLayoutData columns="10"/>
+														</f:layoutData>
+														<f:content>
+															<Table inset="false" items="{ path: '/INVOICE_ITEM_TAB' }">
+																<layoutData>
+																	<f:GridContainerItemLayoutData minRows="2" columns="2"/>
+																</layoutData>
+																<headerToolbar>
+																	<Toolbar>
+																		<Title text="Invoice Items"/>
+																	</Toolbar>
+																</headerToolbar>
+																<columns>
+																	<Column width="12em">
+																		<Text text="Invoice Number"/>
+																	</Column>
+																	<Column minScreenWidth="Tablet" demandPopin="true">
+																		<Text text="Item"/>
+																	</Column>
+																	<Column minScreenWidth="Desktop" demandPopin="true" hAlign="End">
+																		<Text text="Description"/>
+																	</Column>
+																	<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
+																		<Text text="Quantity"/>
+																	</Column>
+																	<Column hAlign="End">
+																		<Text text="UoM"/>
+																	</Column>
+																	<Column hAlign="End">
+																		<Text text="Total Amount"/>
+																	</Column>
+																	<Column hAlign="End">
+																		<Text text="Tax Amount"/>
+																	</Column>
+																</columns>
+																<items>
+																	<ColumnListItem>
+																		<cells>
+																			<ObjectIdentifier title="{VBELN}"/>
+																			<Text text="{POSNR}"/>
+																			<Text text="{ARKTX}"/>
+																			<Text text="{FKIMG}"/>
+																			<Text text="{MEINS}"></Text>
+																			<Text text="{NETWR}"></Text>
+																			<Text text="{MWSBP}"></Text>
+																		</cells>
+																	</ColumnListItem>
+																</items>
+															</Table>
+														</f:content>
+													</f:Card>
+												</f:items>
+											</f:GridContainer>
+										</Panel>
+									</content>
+								</Page>
+							</detailPages>
+						</SplitContainer>
 					</content>
 				</Page>
 			</pages>

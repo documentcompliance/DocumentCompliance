@@ -11,9 +11,6 @@ modules:
           url: '${default-url}'
     requires:
       - name: docuchainresource
-    parameters:
-      BC_TECHNOLOGY_SERVICE_NAME: mcinstance
-      MC_STREAM_ID: SAP000S407W212743
   - name: compliance-ui
     type: html5
     path: compliance-ui

@@ -1,14 +1,18 @@
 {
-  "welcomeFile": "/compliance-ui/index.html",
-  "authenticationMethod": "route",
-  "logout": {
-    "logoutEndpoint": "/do/logout"
-  },
-  "routes": [
-    {
-      "source": "^/compliance-ui/(.*)$",
-      "target": "$1",
-      "localDir": "webapp"
-    }
-  ]
+	"welcomeFile": "/compliance-ui/index.html",
+	"authenticationMethod": "none",
+	"logout": {
+		"logoutEndpoint": "/do/logout"
+	},
+	"routes": [{
+		"source": "^/compliance-ui/(.*)$",
+		"target": "$1",
+		"localDir": "webapp"
+	}, {
+		"source": "^/docuchain/(.*)$",
+		"target": "$1",
+		"authenticationType": "none",
+		"destination": "seller_docuchain",
+		"csrfProtection": false
+	}]
 }

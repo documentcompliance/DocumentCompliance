@@ -22,6 +22,12 @@ modules:
     requires:
       - name: uaa_docuchain
       - name: dest_docuchain
+      - name: compliance-srv_api
+        group: destinations
+        properties:
+          name: seller_docuchain
+          url: '~{url}'
+          forwardAuthToken: true
 resources:
   - name: docuchainresource
     parameters:
@@ -34,9 +40,9 @@ resources:
       path: ./xs-security.json
       service-plan: application
       service: xsuaa
-    type: org.cloudfoundry.managed-service
+    type: org.cloudfoundry.existing-service
   - name: dest_docuchain
     parameters:
       service-plan: lite
       service: destination
-    type: org.cloudfoundry.managed-service
+    type: org.cloudfoundry.existing-service

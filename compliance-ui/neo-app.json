@@ -23,7 +23,7 @@
       "path": "/docuchain",
       "target": {
         "type": "destination",
-        "name": "docuchain"
+        "name": "seller_docuchain"
       },
       "description": "SAPUI5 Test Resources"
     }

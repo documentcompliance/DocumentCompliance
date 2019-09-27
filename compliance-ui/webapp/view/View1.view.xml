@@ -3,7 +3,7 @@
 	<Shell id="shell">
 		<App id="app">
 			<pages>
-				<Page title="Seller X">
+				<Page title="Sender Perspective">
 					<content>
 						<SplitContainer initialDetail="detail" initialMaster="master">
 							<masterPages>
@@ -11,7 +11,11 @@
 									<content>
 										<List items="{master>/}">
 											<items>
-												<StandardListItem title="{master>key}" type="Active" press="onSelectInvoiceId"/>
+												<ObjectListItem title="{master>key}" type="Active" press="onSelectInvoiceId">
+													<attributes>
+														<ObjectAttribute text="{master>blocktime}"></ObjectAttribute>
+													</attributes>
+												</ObjectListItem>
 											</items>
 										</List>
 									</content>
@@ -20,7 +24,7 @@
 							<detailPages>
 								<Page id="detail" showHeader="false" icon="sap-icon://action" class="sapUiStdPage">
 									<content>
-										<Panel headerText="Header Details" expandable="true">
+										<Panel headerText="Header Details" expandable="true" expanded="true">
 											<f:GridContainer class="sapUiSmallMargin" inlineBlockLayout="true">
 												<f:layout>
 													<f:GridContainerSettings rowSize="5rem" columnSize="5rem" gap="1rem"/>
@@ -35,22 +39,22 @@
 														</f:layoutData>
 														<f:content>
 															<VBox class="sapUiSmallMargin">
-																<form:SimpleForm title="Sender" singleContainerFullSize="false" columnsM="12" columnsL="12" columnsXL="12" emptySpanS="0" emptySpanM="4"
+																<form:SimpleForm title="Customer Details" singleContainerFullSize="false" columnsM="12" columnsL="12" columnsXL="12" emptySpanS="0" emptySpanM="4"
 																	emptySpanL="4" emptySpanXL="4" adjustLabelSpan="false" labelSpanS="12" labelSpanM="12" labelSpanL="12" labelSpanXL="3"
 																	layout="ResponsiveGridLayout" editable="false">
 																	<form:content>
 																		<Label text="Name"/>
-																		<Text text="{/SENDER/0/NAME}"/>
+																		<Text text="{/RECEIVER/0/NAME}"/>
 																		<Label text="Tax ID."/>
-																		<Text text="{/SENDER/0/TAX_ID}"/>
+																		<Text text="{/RECEIVER/0/TAX_ID}"/>
 																		<Label text="Street Number"/>
-																		<Text text="{/SENDER/0/ADDRESS/0/STR_NUMBER}"/>
+																		<Text text="{/RECEIVER/0/ADDRESS/0/STR_NUMBER}"/>
 																		<Label text="Street"/>
-																		<Text text="{/SENDER/0/ADDRESS/0/STREET_NAME}"/>
+																		<Text text="{/RECEIVER/0/ADDRESS/0/STREET_NAME}"/>
 																		<Label text="City"/>
-																		<Text text="{/SENDER/0/ADDRESS/0/CITY}"/>
+																		<Text text="{/RECEIVER/0/ADDRESS/0/CITY}"/>
 																		<Label text="Zipcode"/>
-																		<Text text="{/SENDER/0/ADDRESS/0/ZIPCODE}"/>
+																		<Text text="{/RECEIVER/0/ADDRESS/0/ZIPCODE}"/>
 																	</form:content>
 																</form:SimpleForm>
 															</VBox>

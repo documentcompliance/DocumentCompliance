@@ -11,7 +11,9 @@ sap.ui.define([
 			this.getView().setModel(keyModel, "master");*/
 
 			this.jsonModel = new sap.ui.model.json.JSONModel();
-			this.jsonModel.loadData("/docuchain/liststreamitems", null, false);
+			
+			var seller=window.location.href.split("?")[window.location.href.split("?").length-1].split("=")[1];
+			this.jsonModel.loadData("/docuchain/liststreamitems/" + seller, null, false);
 
 			var masterModel = new sap.ui.model.json.JSONModel();
 			masterModel.setData(this.jsonModel.getData());

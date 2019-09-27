@@ -38,7 +38,7 @@ app.get("/liststreamkeys", function (req, res) {
 		});
 });
 
-app.get("/liststreamitems", function (req, res) {
+app.get("/liststreamitems/:selleremail", function (req, res) {
 	var config = {
 		"method": "liststreamitems",
 		"params": ["stream1"]
@@ -57,7 +57,17 @@ app.get("/liststreamitems", function (req, res) {
 	axios(authOptions)
 		.then(response => {
 			// JSON responses are automatically parsed.
-			res.send(response.data.result);
+			var result = response.data.result;
+			var filteredResult = result.filter(function(v){
+				if(v.data.json.MAIL_ADDR){
+					return v.data.json.MAIL_ADDR[0].EMAIL === req.params.selleremail	
+				}
+				else{
+					return null;
+				}
+			});
+			res.send(filteredResult);
+			
 		})
 		.catch(e => {
 			res.send(e);

@@ -3,7 +3,7 @@
 	<Shell id="shell">
 		<App id="app">
 			<pages>
-				<Page title="Sender Perspective">
+				<Page title="Sender - eDocuments Compliance Cockpit">
 					<content>
 						<SplitContainer initialDetail="detail" initialMaster="master">
 							<masterPages>
@@ -13,7 +13,7 @@
 											<items>
 												<ObjectListItem title="{master>key}" type="Active" press="onSelectInvoiceId">
 													<attributes>
-														<ObjectAttribute text="{master>blocktime}"></ObjectAttribute>
+														<ObjectAttribute text="{path: 'master>blocktime', formatter: '.formatter.blocktimeDisplay' }"></ObjectAttribute>
 													</attributes>
 												</ObjectListItem>
 											</items>
@@ -88,7 +88,7 @@
 												</f:items>
 											</f:GridContainer>
 										</Panel>
-										<Panel headerText="Item Details" expandable="true">
+										<Panel headerText="Item Details" expandable="true" expanded="true">
 											<f:GridContainer id="demoGrid" class="sapUiSmallMargin" inlineBlockLayout="true">
 												<f:items>
 													<f:Card>

@@ -1,9 +1,11 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller"
-], function (Controller) {
+	"sap/ui/core/mvc/Controller",
+	"../model/formatter"
+], function (Controller, formatter) {
 	"use strict";
 
 	return Controller.extend("com.sap.document.compliance.compliance-ui.controller.View1", {
+		formatter: formatter,
 		onInit: function () {
 
 			/*var keyModel = new sap.ui.model.json.JSONModel();

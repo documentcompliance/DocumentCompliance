@@ -41,7 +41,7 @@ app.get("/liststreamkeys", function (req, res) {
 app.get("/liststreamitems/:selleremail", function (req, res) {
 	var config = {
 		"method": "liststreamitems",
-		"params": ["stream1"]
+		"params": ["stream1", false, 1000]
 	};
 
 	var authOptions = {

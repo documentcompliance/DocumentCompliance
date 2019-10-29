@@ -1,17 +1,29 @@
 <mvc:View controllerName="com.sap.document.compliance.compliance-ui.controller.View1" xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-	xmlns="sap.m" xmlns:f="sap.f" xmlns:form="sap.ui.layout.form" xmlns:card="sap.f.cards" xmlns:core="sap.ui.core">
+	xmlns="sap.m" xmlns:f="sap.f" xmlns:tnt="sap.tnt" xmlns:form="sap.ui.layout.form" xmlns:card="sap.f.cards" xmlns:core="sap.ui.core">
 	<Shell id="shell">
 		<App id="app">
 			<pages>
-				<Page title="Sender - eDocuments Compliance Cockpit">
+				<Page title="Seller - eDocuments Compliance Cockpit">
+				<f:ShellBar
+					homeIcon="{logoModel>/src}"
+					showCopilot="true"
+					showSearch="false"
+					showMenuButton="false"
+					showNotifications="true"
+					notificationsNumber="2"
+					showProductSwitcher="true">
+				</f:ShellBar>					
 					<content>
 						<SplitContainer initialDetail="detail" initialMaster="master">
 							<masterPages>
-								<Page id="master" title="Transactions" icon="sap-icon://action" class="sapUiStdPage">
+								<Page id="master" title="Documents" icon="sap-icon://action" class="sapUiStdPage">
 									<content>
 										<List items="{master>/}">
 											<items>
 												<ObjectListItem title="{master>key}" type="Active" press="onSelectInvoiceId">
+													<firstStatus>
+														<ObjectStatus text="Verified" state="Success"/>
+													</firstStatus>
 													<attributes>
 														<ObjectAttribute text="{path: 'master>blocktime', formatter: '.formatter.blocktimeDisplay' }"></ObjectAttribute>
 													</attributes>
@@ -39,8 +51,8 @@
 														</f:layoutData>
 														<f:content>
 															<VBox class="sapUiSmallMargin">
-																<form:SimpleForm title="Customer Details" singleContainerFullSize="false" columnsM="12" columnsL="12" columnsXL="12" emptySpanS="0" emptySpanM="4"
-																	emptySpanL="4" emptySpanXL="4" adjustLabelSpan="false" labelSpanS="12" labelSpanM="12" labelSpanL="12" labelSpanXL="3"
+																<form:SimpleForm title="Customer Details" singleContainerFullSize="false" columnsM="12" columnsL="12" columnsXL="12" emptySpanS="0"
+																	emptySpanM="4" emptySpanL="4" emptySpanXL="4" adjustLabelSpan="false" labelSpanS="12" labelSpanM="12" labelSpanL="12" labelSpanXL="3"
 																	layout="ResponsiveGridLayout" editable="false">
 																	<form:content>
 																		<Label text="Name"/>
